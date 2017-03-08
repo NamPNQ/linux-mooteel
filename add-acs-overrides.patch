@@ -47,24 +47,24 @@ your customers the hassle of this boot option.
 
 Signed-off-by: Mark Weiman <mark.weiman@markzz.com>
 ---
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
+--- a/Documentation/admin-guide/kernel-parameters.txt     2017-02-26 05:09:33.000000000 -0500
++++ b/Documentation/admin-guide/kernel-parameters.txt     2017-03-02 16:07:21.297286700 -0500
 @@ -2833,6 +2833,15 @@
- 		nomsi		[MSI] If the PCI_MSI kernel config parameter is
- 				enabled, this kernel boot option can be used to
- 				disable the use of MSI interrupts system-wide.
-+		pci_acs_override =
-+					[PCIE] Override missing PCIe ACS support for:
-+				downstream
-+					All downstream ports - full ACS capabilities
-+				multfunction
-+					All multifunction devices - multifunction ACS subset
-+				id:nnnn:nnnn
-+					Specfic device - full ACS capabilities
-+					Specified as vid:did (vendor/device ID) in hex
- 		noioapicquirk	[APIC] Disable all boot interrupt quirks.
- 				Safety option to keep boot IRQs enabled. This
- 				should never be necessary.
+                nomsi           [MSI] If the PCI_MSI kernel config parameter is
+                                enabled, this kernel boot option can be used to
+                                disable the use of MSI interrupts system-wide.
++               pci_acs_override =
++                                       [PCIE] Override missing PCIe ACS support for:
++                               downstream
++                                       All downstream ports - full ACS capabilities
++                               multfunction
++                                       All multifunction devices - multifunction ACS subset
++                               id:nnnn:nnnn
++                                       Specfic device - full ACS capabilities
++                                       Specified as vid:did (vendor/device ID) in hex
+                noioapicquirk   [APIC] Disable all boot interrupt quirks.
+                                Safety option to keep boot IRQs enabled. This
+                                should never be necessary.
 
 --- a/drivers/pci/quirks.c
 +++ b/drivers/pci/quirks.c
