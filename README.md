@@ -1,3 +1,3 @@
 # linux-mooteel
-Adds ACS overrides to Latest Linux Kernel.
-Currently Linux 4.10.1
+Arch Linux AUR package that adds ACS overrides to the latest Linux Kernel.
+Currently Linux Kernel 4.10.1
