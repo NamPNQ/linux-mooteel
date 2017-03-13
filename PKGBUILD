@@ -3,10 +3,10 @@
 # Maintainer: Thomas Baechler <thomas@archlinux.org>
 # Adaptation by mooteel
 
-pkgbase=linux-mooteel               # Build stock -ARCH kernel
-#pkgbase=linux-custom       # Build kernel with a different name
+#pkgbase=linux-ARCH      # Build stock -ARCH kernel
+pkgbase=linux-mooteel   # Build kernel with a different name
 _srcname=linux-4.10
-pkgver=4.10.1
+pkgver=4.10.2
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -28,7 +28,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
 
 sha256sums=('3c95d9f049bd085e5c346d2c77f063b8425f191460fcd3ae9fe7e94e0477dc4b'
             'SKIP'
-            'da560125aa350f76f0e4a5b9373a0d0a1c27ccefe3b7bd9231724f3a3c4ebb9e'
+            '3e2c2ba9dd2c421ea4f7e10150cc5f5fa5fdbaffef5377988fabb7d6f7d65bab'
             'SKIP'
             '29d8a1db9566ede764354fefeb3a6c44acbc396f1de32c7c5fd390c0b92cfe8a'
             '834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0'
