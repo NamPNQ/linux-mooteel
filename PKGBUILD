@@ -27,6 +27,15 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
         '0001-tty-n_hdlc-get-rid-of-racy-n_hdlc_tbuf.patch'
         '0002-add-acs-overrides.patch'
 		)
+sha256sums=('3c95d9f049bd085e5c346d2c77f063b8425f191460fcd3ae9fe7e94e0477dc4b'
+            'SKIP'
+            '3e2c2ba9dd2c421ea4f7e10150cc5f5fa5fdbaffef5377988fabb7d6f7d65bab'
+            'SKIP'
+            '29d8a1db9566ede764354fefeb3a6c44acbc396f1de32c7c5fd390c0b92cfe8a'
+            '834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0'
+            'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65'
+            'd0b412416963cefbb9baa06ef055e2b9485e2b9f948da14dfe50ee863577405c'
+            '66f637bfdf903a774cfe2d1a5bbcbd7a179259a922369475203819d9bbbcbaf2')
 
 validpgpkeys=(
               'ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
@@ -44,12 +53,13 @@ prepare() {
   # add latest fixes from stable queue, if needed
   # http://git.kernel.org/?p=linux/kernel/git/stable/stable-queue.git
 
-  # patch for CVE-2017-2636)
+  # patch for CVE-2017-2636
+  echo '==> Applying CVE-2017-2636 patch'
   patch -p1 -i "${srcdir}/0001-tty-n_hdlc-get-rid-of-racy-n_hdlc_tbuf.patch"
   
   # Overrides for missing acs capabilities
   echo '==> Applying ACS override patch'
-  patch -p1 -i "${srcdir}/add-acs-overrides.patch"
+  patch -p1 -i "${srcdir}/0002-add-acs-overrides.patch"
   
   cat "${srcdir}/config.${CARCH}" > ./.config
 
