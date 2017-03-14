@@ -28,7 +28,7 @@ pkgbase = linux-mooteel
 	sha256sums = 29d8a1db9566ede764354fefeb3a6c44acbc396f1de32c7c5fd390c0b92cfe8a
 	sha256sums = 834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0
 	sha256sums = ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65
-	sha256sums = 4cd664621bad724a3c442b5a27af10154ae9e9c594d196f10c10f674a7e19a9c
+	sha256sums = 66f637bfdf903a774cfe2d1a5bbcbd7a179259a922369475203819d9bbbcbaf2
 
 pkgname = linux-mooteel
 	pkgdesc = The Linux-mooteel kernel and modules
