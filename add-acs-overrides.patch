@@ -55,10 +55,10 @@ Signed-off-by: Mark Weiman <mark.weiman@markzz.com>
  				port.
  
 +	pcie_acs_override=	[PCIE] Override missing PCIe ACS support for:
-+		downstream		All downstream ports - full ACS capabilties
++		downstream	All downstream ports - full ACS capabilties
 +		multifunction	All multifunction devices - multifunction ACS subset
 +		id:nnnn:nnnn	Specfic device - full ACS capabilities
-+			Specified as vid:did (vendor/device ID) in hex
++				Specified as vid:did (vendor/device ID) in hex
 +
  	pcie_aspm=	[PCIE] Forcibly enable or disable PCIe Active State Power
  			Management.
