@@ -7,7 +7,7 @@
 #pkgbase=linux-ARCH      # Build stock -ARCH kernel
 pkgbase=linux-mooteel   # Build kernel with a different name
 _srcname=linux-4.10
-pkgver=4.10.3
+pkgver=4.10.4
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -24,16 +24,18 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
         '99-linux.hook'
         # standard config files for mkinitcpio ramdisk
         'linux.preset'
-        '0001-add-acs-overrides.patch'
+        'add-acs-overrides.patch'
+        'APST.patch'
 		)
 sha256sums=('3c95d9f049bd085e5c346d2c77f063b8425f191460fcd3ae9fe7e94e0477dc4b'
             'SKIP'
-            '17459007bae81a8cda00f0ce74dfbc70c1afc5b99133649e664045e34c5d63b5'
+            '68e935fbe1c3faaf186824a44b79a26f1ab85f04a1dade2e5bce5f8c2941624d'
             'SKIP'
             '29d8a1db9566ede764354fefeb3a6c44acbc396f1de32c7c5fd390c0b92cfe8a'
             '834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65'
-            '66f637bfdf903a774cfe2d1a5bbcbd7a179259a922369475203819d9bbbcbaf2')
+            '66f637bfdf903a774cfe2d1a5bbcbd7a179259a922369475203819d9bbbcbaf2'
+            '8ba7d5596b65c7705958836ab93ac714dbccdcd7e806be49f667ed427eff3e83')
 
 validpgpkeys=(
               'ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
@@ -53,7 +55,11 @@ prepare() {
 
   # Overrides for missing acs capabilities
   echo '==> Applying ACS override patch'
-  patch -p1 -i "${srcdir}/0001-add-acs-overrides.patch"
+  patch -p1 -i "${srcdir}/add-acs-overrides.patch"
+  
+  # nvme power management
+  echo '==> Applying nvme APST patch'
+  patch -p1 -i "${srcdir}/APST.patch"
   
   cat "${srcdir}/config.${CARCH}" > ./.config
 
