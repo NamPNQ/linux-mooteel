@@ -7,7 +7,7 @@
 #pkgbase=linux-ARCH      # Build stock -ARCH kernel
 pkgbase=linux-mooteel   # Build kernel with a different name
 _srcname=linux-4.10
-pkgver=4.10.5
+pkgver=4.10.6
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -26,7 +26,8 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
         'linux.preset'
         'add-acs-overrides.patch'
         'APST.patch'
-		)
+        'i915-vga-arbiter.patch')
+
 sha256sums=('3c95d9f049bd085e5c346d2c77f063b8425f191460fcd3ae9fe7e94e0477dc4b'
             'SKIP'
             '03c64409653b19d39af54c8781fde0a3747ba16577c9e5b0e1031e5d8fc29db6'
@@ -62,7 +63,10 @@ prepare() {
   patch -p1 -i "${srcdir}/APST.patch"
   
   cat "${srcdir}/config.${CARCH}" > ./.config
-
+  # nvme power management
+  echo '==> Applying i915 VGA Arbitrator patch'
+  patch -p1 -i "${srcdir}/i915-vga-arbiter.patch"
+  
   if [ "${_kernelname}" != "" ]; then
     sed -i "s|CONFIG_LOCALVERSION=.*|CONFIG_LOCALVERSION=\"${_kernelname}\"|g" ./.config
     sed -i "s|CONFIG_LOCALVERSION_AUTO=.*|CONFIG_LOCALVERSION_AUTO=n|" ./.config
