@@ -30,13 +30,14 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
 
 sha256sums=('3c95d9f049bd085e5c346d2c77f063b8425f191460fcd3ae9fe7e94e0477dc4b'
             'SKIP'
-            '03c64409653b19d39af54c8781fde0a3747ba16577c9e5b0e1031e5d8fc29db6'
+            '99ecfe76c427aeebfb0f02fe130264db1d22c87e3f7efd34a231fe6d5c50d75d'
             'SKIP'
             '29d8a1db9566ede764354fefeb3a6c44acbc396f1de32c7c5fd390c0b92cfe8a'
             '834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65'
             '66f637bfdf903a774cfe2d1a5bbcbd7a179259a922369475203819d9bbbcbaf2'
-            '8ba7d5596b65c7705958836ab93ac714dbccdcd7e806be49f667ed427eff3e83')
+            '8ba7d5596b65c7705958836ab93ac714dbccdcd7e806be49f667ed427eff3e83'
+            '0bef31f6d1415398cb2e78d58798aa49e146b27c87764da181b6d41bd4e577eb')
 
 validpgpkeys=(
               'ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
