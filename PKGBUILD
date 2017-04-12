@@ -7,7 +7,7 @@
 #pkgbase=linux-ARCH      # Build stock -ARCH kernel
 pkgbase=linux-mooteel   # Build kernel with a different name
 _srcname=linux-4.10
-pkgver=4.10.9
+pkgver=4.10.10
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -21,24 +21,24 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
         # the main kernel config files
         'config.x86_64'
         # pacman hook for initramfs regeneration
-        '99-linux.hook'
+        '90-linux.hook'
         # standard config files for mkinitcpio ramdisk
         'linux.preset'
+        # misc patches
         'add-acs-overrides.patch'
         'APST.patch'
         'i915-vga-arbiter.patch')
 
 sha256sums=('3c95d9f049bd085e5c346d2c77f063b8425f191460fcd3ae9fe7e94e0477dc4b'
             'SKIP'
-            '9a00b962a5e30d61a0d488fc28f4a20b79c8c5c28fa21ee89c440c025c6c7c21'
+            '200cb2b47d2b6316f4cc6ee90be581187d34f90390aef8fc07d4460be11cfeb2'
             'SKIP'
-            '29d8a1db9566ede764354fefeb3a6c44acbc396f1de32c7c5fd390c0b92cfe8a'
-            '834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0'
-            'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65'
+            '051f41c7e917e8e5b1deaecc50e7f789c4bbd9bf81ee28db7580ade6a120b5ac'
+            '124968e1caf2d461fff05055ad9332b8b9ff348bd87f5eba96b6a98a23c72a85'
+            '18880f98eb9aab7d894a4521fde4bb4e3c4df94cbc2765a59dc42a3d553ec5e9'
             '66f637bfdf903a774cfe2d1a5bbcbd7a179259a922369475203819d9bbbcbaf2'
             '8ba7d5596b65c7705958836ab93ac714dbccdcd7e806be49f667ed427eff3e83'
             '0bef31f6d1415398cb2e78d58798aa49e146b27c87764da181b6d41bd4e577eb')
-
 validpgpkeys=(
               'ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
               '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
@@ -55,19 +55,20 @@ prepare() {
   # add latest fixes from stable queue, if needed
   # http://git.kernel.org/?p=linux/kernel/git/stable/stable-queue.git
 
-  # Overrides for missing acs capabilities
+  # Overrides for missing acs capabilities patch
   echo '==> Applying ACS override patch'
   patch -p1 -i "${srcdir}/add-acs-overrides.patch"
-  
-  # nvme power management
+
+  # nvme power management patch
   echo '==> Applying nvme APST patch'
   patch -p1 -i "${srcdir}/APST.patch"
-  
-  cat "${srcdir}/config.${CARCH}" > ./.config
-  # nvme power management
-  echo '==> Applying i915 VGA Arbitrator patch'
+
+  # i915 vga arbiter patch
+  echo '==> Applying i915 vga arbiter patch'
   patch -p1 -i "${srcdir}/i915-vga-arbiter.patch"
-  
+
+  cat "${srcdir}/config.${CARCH}" > ./.config
+
   if [ "${_kernelname}" != "" ]; then
     sed -i "s|CONFIG_LOCALVERSION=.*|CONFIG_LOCALVERSION=\"${_kernelname}\"|g" ./.config
     sed -i "s|CONFIG_LOCALVERSION_AUTO=.*|CONFIG_LOCALVERSION_AUTO=n|" ./.config
@@ -131,8 +132,8 @@ _package() {
     install -D -m644 /dev/stdin "${pkgdir}/etc/mkinitcpio.d/${pkgbase}.preset"
 
   # install pacman hook for initramfs regeneration
-  sed "s|%PKGBASE%|${pkgbase}|g" "${srcdir}/99-linux.hook" |
-    install -D -m644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/99-${pkgbase}.hook"
+  sed "s|%PKGBASE%|${pkgbase}|g" "${srcdir}/90-linux.hook" |
+    install -D -m644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/90-${pkgbase}.hook"
 
   # remove build and source links
   rm -f "${pkgdir}"/lib/modules/${_kernver}/{source,build}
@@ -306,3 +307,4 @@ for _p in ${pkgname[@]}; do
 done
 
 # vim:set ts=8 sts=2 sw=2 et:
+
