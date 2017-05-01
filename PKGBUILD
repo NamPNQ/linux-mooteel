@@ -6,8 +6,8 @@
 
 #pkgbase=linux-ARCH      # Build stock -ARCH kernel
 pkgbase=linux-mooteel   # Build kernel with a different name
-_srcname=linux-4.10
-pkgver=4.10.13
+_srcname=linux-4.11
+pkgver=4.11
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -29,9 +29,9 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
         'APST.patch'
         'i915-vga-arbiter.patch')
 
-sha256sums=('3c95d9f049bd085e5c346d2c77f063b8425f191460fcd3ae9fe7e94e0477dc4b'
+sha256sums=('b67ecafd0a42b3383bf4d82f0850cbff92a7e72a215a6d02f42ddbafcf42a7d6'
             'SKIP'
-            'b1a7a98aa97cc0917fcab0def68032d5bf61838c79177b2222cee2485015458f'
+            '0e65eee0893968c94cb6b62ff071bc3877d6c9a85413406526dbcc764811bec5'
             'SKIP'
             '051f41c7e917e8e5b1deaecc50e7f789c4bbd9bf81ee28db7580ade6a120b5ac'
             '124968e1caf2d461fff05055ad9332b8b9ff348bd87f5eba96b6a98a23c72a85'
@@ -50,7 +50,7 @@ prepare() {
   cd "${srcdir}/${_srcname}"
 
   # add upstream patch
-  patch -p1 -i "${srcdir}/patch-${pkgver}"
+  #patch -p1 -i "${srcdir}/patch-${pkgver}"
 
   # add latest fixes from stable queue, if needed
   # http://git.kernel.org/?p=linux/kernel/git/stable/stable-queue.git
