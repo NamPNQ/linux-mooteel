@@ -6,8 +6,8 @@
 
 #pkgbase=linux-ARCH      # Build stock -ARCH kernel
 pkgbase=linux-mooteel   # Build kernel with a different name
-_srcname=linux-4.10
-pkgver=4.10.13
+_srcname=linux-4.11
+pkgver=4.11
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -26,19 +26,16 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
         'linux.preset'
         # misc patches
         'add-acs-overrides.patch'
-        'APST.patch'
-        'i915-vga-arbiter.patch')
+        )
 
-sha256sums=('3c95d9f049bd085e5c346d2c77f063b8425f191460fcd3ae9fe7e94e0477dc4b'
+sha256sums=('b67ecafd0a42b3383bf4d82f0850cbff92a7e72a215a6d02f42ddbafcf42a7d6'
             'SKIP'
-            'b1a7a98aa97cc0917fcab0def68032d5bf61838c79177b2222cee2485015458f'
+            '0e65eee0893968c94cb6b62ff071bc3877d6c9a85413406526dbcc764811bec5'
             'SKIP'
-            '051f41c7e917e8e5b1deaecc50e7f789c4bbd9bf81ee28db7580ade6a120b5ac'
+            '7218544621a489500b58e1caf3e90a0e46e40a09f89d76e4cbf5a230a9e8f2be'
             '124968e1caf2d461fff05055ad9332b8b9ff348bd87f5eba96b6a98a23c72a85'
             '18880f98eb9aab7d894a4521fde4bb4e3c4df94cbc2765a59dc42a3d553ec5e9'
-            '66f637bfdf903a774cfe2d1a5bbcbd7a179259a922369475203819d9bbbcbaf2'
-            '8ba7d5596b65c7705958836ab93ac714dbccdcd7e806be49f667ed427eff3e83'
-            '0bef31f6d1415398cb2e78d58798aa49e146b27c87764da181b6d41bd4e577eb')
+            '66f637bfdf903a774cfe2d1a5bbcbd7a179259a922369475203819d9bbbcbaf2')
 validpgpkeys=(
               'ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
               '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
@@ -50,7 +47,7 @@ prepare() {
   cd "${srcdir}/${_srcname}"
 
   # add upstream patch
-  patch -p1 -i "${srcdir}/patch-${pkgver}"
+  #patch -p1 -i "${srcdir}/patch-${pkgver}"
 
   # add latest fixes from stable queue, if needed
   # http://git.kernel.org/?p=linux/kernel/git/stable/stable-queue.git
@@ -58,14 +55,6 @@ prepare() {
   # Overrides for missing acs capabilities patch
   echo '==> Applying ACS override patch'
   patch -p1 -i "${srcdir}/add-acs-overrides.patch"
-
-  # nvme power management patch
-  echo '==> Applying nvme APST patch'
-  patch -p1 -i "${srcdir}/APST.patch"
-
-  # i915 vga arbiter patch
-  echo '==> Applying i915 vga arbiter patch'
-  patch -p1 -i "${srcdir}/i915-vga-arbiter.patch"
 
   cat "${srcdir}/config.${CARCH}" > ./.config
 
