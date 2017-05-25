@@ -4,10 +4,10 @@
 
 # Adaptation by mooteel
 
-#pkgbase=linux-ARCH      # Build stock -ARCH kernel
-pkgbase=linux-mooteel   # Build kernel with a different name
+#pkgbase=linux               # Build stock -ARCH kernel
+pkgbase=linux-mooteel       # Build kernel with a different name
 _srcname=linux-4.11
-pkgver=4.11.2
+pkgver=4.11.3
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -25,14 +25,13 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
         # standard config files for mkinitcpio ramdisk
         'linux.preset'
         # misc patches
-        'add-acs-overrides.patch'
-        )
+        'add-acs-overrides.patch')
 
 sha256sums=('b67ecafd0a42b3383bf4d82f0850cbff92a7e72a215a6d02f42ddbafcf42a7d6'
             'SKIP'
-            'df7138c754c95f2c22127d1d76c122dbfe26b0b586572855d9d095f0d112b29b'
+            '5847b5d2a3252cd19a28ed1dc13a238d041396792c7863e9ff0bbf5b79cd5e90'
             'SKIP'
-            '7218544621a489500b58e1caf3e90a0e46e40a09f89d76e4cbf5a230a9e8f2be'
+            '1c3e06fca7e6f5d09736b62165b6bbef6eefbe96c323d89f75fe6f02a6413cf7'
             '124968e1caf2d461fff05055ad9332b8b9ff348bd87f5eba96b6a98a23c72a85'
             '18880f98eb9aab7d894a4521fde4bb4e3c4df94cbc2765a59dc42a3d553ec5e9'
             '66f637bfdf903a774cfe2d1a5bbcbd7a179259a922369475203819d9bbbcbaf2')
@@ -296,4 +295,3 @@ for _p in ${pkgname[@]}; do
 done
 
 # vim:set ts=8 sts=2 sw=2 et:
-
