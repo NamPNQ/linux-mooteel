@@ -7,7 +7,7 @@
 #pkgbase=linux               # Build stock -ARCH kernel
 pkgbase=linux-mooteel       # Build kernel with a different name
 _srcname=linux-4.11
-pkgver=4.11.3
+pkgver=4.11.4
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
