@@ -7,7 +7,7 @@
 #pkgbase=linux               # Build stock -ARCH kernel
 pkgbase=linux-mooteel       # Build kernel with a different name
 _srcname=linux-4.11
-pkgver=4.11.4
+pkgver=4.11.5
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -29,7 +29,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
 
 sha256sums=('b67ecafd0a42b3383bf4d82f0850cbff92a7e72a215a6d02f42ddbafcf42a7d6'
             'SKIP'
-            '7b36a573cce74d8e5312c88595bc0c0a60957c1fb79758303c9de9e944e2d339'
+            '1686ea3200069acd7869075a208ad6771c651b4f9d942b4a340fb8606c75fe13'
             'SKIP'
             '1c3e06fca7e6f5d09736b62165b6bbef6eefbe96c323d89f75fe6f02a6413cf7'
             '124968e1caf2d461fff05055ad9332b8b9ff348bd87f5eba96b6a98a23c72a85'
