@@ -6,8 +6,8 @@
 
 #pkgbase=linux               # Build stock -ARCH kernel
 pkgbase=linux-mooteel       # Build kernel with a different name
-_srcname=linux-4.11
-pkgver=4.11.8
+_srcname=linux-4.12
+pkgver=4.12
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org/"
@@ -27,9 +27,9 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
         # misc patches
         'add-acs-overrides.patch')
 
-sha256sums=('b67ecafd0a42b3383bf4d82f0850cbff92a7e72a215a6d02f42ddbafcf42a7d6'
+sha256sums=('a45c3becd4d08ce411c14628a949d08e2433d8cdeca92036c7013980e93858ab'
             'SKIP'
-            'c390540524e9647efa3752550cb04b02f47a60a5d45f26d56a07cd8a67501929'
+            '8df4bb9871d154e8af02eb5a95800661dc0e84ed32ee4a5edc5a2ec9b304c128'
             'SKIP'
             '1c3e06fca7e6f5d09736b62165b6bbef6eefbe96c323d89f75fe6f02a6413cf7'
             '124968e1caf2d461fff05055ad9332b8b9ff348bd87f5eba96b6a98a23c72a85'
@@ -46,7 +46,7 @@ prepare() {
   cd "${srcdir}/${_srcname}"
 
   # add upstream patch
-  patch -p1 -i "${srcdir}/patch-${pkgver}"
+  #patch -p1 -i "${srcdir}/patch-${pkgver}"
 
   # add latest fixes from stable queue, if needed
   # http://git.kernel.org/?p=linux/kernel/git/stable/stable-queue.git
